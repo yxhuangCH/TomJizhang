@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TomFinancialAccounting</string>
+    <string name="accessibility_service_description">自动记账 PoC：读取微信/支付宝支付页面内容作为通知捕获的 Fallback 验证</string>
 </resources>
