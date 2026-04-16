@@ -9,3 +9,8 @@
 .externalNativeBuild
 .cxx
 local.properties
+/.claude
+/.idea/
+/.idea/gradle.xml
+
+
