@@ -54,6 +54,12 @@ kotlin {
 }
 
 dependencies {
+    implementation(project(":core:model"))
+    implementation(project(":core:database"))
+    implementation(project(":core:common"))
+    implementation(project(":feature:capture"))
+    implementation(project(":feature:parser"))
+    implementation(project(":feature:ledger"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -63,9 +69,13 @@ dependencies {
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.material3)
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.compose)
     testImplementation(libs.junit)
     testImplementation(libs.robolectric)
     testImplementation("androidx.test:core:1.5.0")
+    testImplementation(libs.koin.test)
+    testImplementation(libs.koin.test.junit5)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }

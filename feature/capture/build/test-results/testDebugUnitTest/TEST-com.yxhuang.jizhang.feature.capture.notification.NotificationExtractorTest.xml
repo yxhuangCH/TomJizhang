@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.yxhuang.jizhang.feature.capture.notification.NotificationExtractorTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-04-19T03:00:43" hostname="yxhuangs-MacBook-Pro.local" time="0.004">
+  <properties/>
+  <testcase name="shouldCapture returns true for alipay()" classname="com.yxhuang.jizhang.feature.capture.notification.NotificationExtractorTest" time="0.0"/>
+  <testcase name="extract creates NotificationData with all fields()" classname="com.yxhuang.jizhang.feature.capture.notification.NotificationExtractorTest" time="0.001"/>
+  <testcase name="shouldCapture returns true for wechat()" classname="com.yxhuang.jizhang.feature.capture.notification.NotificationExtractorTest" time="0.0"/>
+  <testcase name="shouldCapture returns false for unknown package()" classname="com.yxhuang.jizhang.feature.capture.notification.NotificationExtractorTest" time="0.0"/>
+  <testcase name="extract creates NotificationData with defaults()" classname="com.yxhuang.jizhang.feature.capture.notification.NotificationExtractorTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

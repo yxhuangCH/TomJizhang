@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
+        android:name="com.yxhuang.jizhang.JizhangApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -18,7 +19,7 @@
         android:theme="@style/Theme.JizhangPoc">
 
         <activity
-            android:name="com.yxhuang.jizhang.poc.MainActivity"
+            android:name="com.yxhuang.jizhang.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.JizhangPoc">
             <intent-filter>
@@ -28,24 +29,12 @@
         </activity>
 
         <service
-            android:name="com.yxhuang.jizhang.poc.notification.PocNotificationService"
+            android:name="com.yxhuang.jizhang.feature.capture.notification.CaptureNotificationService"
             android:exported="true"
             android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
             <intent-filter>
                 <action android:name="android.service.notification.NotificationListenerService" />
             </intent-filter>
-        </service>
-
-        <service
-            android:name="com.yxhuang.jizhang.poc.accessibility.PocAccessibilityService"
-            android:exported="true"
-            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
-            <intent-filter>
-                <action android:name="android.accessibilityservice.AccessibilityService" />
-            </intent-filter>
-            <meta-data
-                android:name="android.accessibilityservice"
-                android:resource="@xml/accessibility_service_config" />
         </service>
     </application>
 

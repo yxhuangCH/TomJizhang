@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.yxhuang.jizhang.core.database.repository.TransactionRepositoryImplTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-04-18T13:13:53" hostname="yxhuangs-MBP" time="0.245">
+  <properties/>
+  <testcase name="getById returns mapped domain model()" classname="com.yxhuang.jizhang.core.database.repository.TransactionRepositoryImplTest" time="0.175"/>
+  <testcase name="getById returns null when not found()" classname="com.yxhuang.jizhang.core.database.repository.TransactionRepositoryImplTest" time="0.003"/>
+  <testcase name="insert converts domain model to entity and delegates to dao()" classname="com.yxhuang.jizhang.core.database.repository.TransactionRepositoryImplTest" time="0.017"/>
+  <testcase name="update converts domain model to entity()" classname="com.yxhuang.jizhang.core.database.repository.TransactionRepositoryImplTest" time="0.013"/>
+  <testcase name="observeAll emits domain models mapped from entities()" classname="com.yxhuang.jizhang.core.database.repository.TransactionRepositoryImplTest" time="0.028"/>
+  <testcase name="observeAll emits empty list when no transactions()" classname="com.yxhuang.jizhang.core.database.repository.TransactionRepositoryImplTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

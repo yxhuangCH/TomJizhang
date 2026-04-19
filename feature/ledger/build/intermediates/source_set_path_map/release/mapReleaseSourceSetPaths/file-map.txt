@@ -1,0 +1,55 @@
+com.yxhuang.jizhang.feature.ledger-lifecycle-process-2.7.0-0 /Users/yxhuang/.gradle/caches/8.11.1/transforms/03317de6ad1f07f8f66a9fcafc5323ca/transformed/lifecycle-process-2.7.0/res
+com.yxhuang.jizhang.feature.ledger-sqlite-2.4.0-1 /Users/yxhuang/.gradle/caches/8.11.1/transforms/0834dc610b4684fa4998c949fdcd5823/transformed/sqlite-2.4.0/res
+com.yxhuang.jizhang.feature.ledger-lifecycle-runtime-ktx-2.7.0-2 /Users/yxhuang/.gradle/caches/8.11.1/transforms/0e1406b139b71c2295d6ae54a896a259/transformed/lifecycle-runtime-ktx-2.7.0/res
+com.yxhuang.jizhang.feature.ledger-ui-geometry-release-3 /Users/yxhuang/.gradle/caches/8.11.1/transforms/0ff7bdb7e615dbf062f36c675a49b52c/transformed/ui-geometry-release/res
+com.yxhuang.jizhang.feature.ledger-room-runtime-2.6.1-4 /Users/yxhuang/.gradle/caches/8.11.1/transforms/1897e137fa6c16a8d46ca5ff0bae915b/transformed/room-runtime-2.6.1/res
+com.yxhuang.jizhang.feature.ledger-material3-release-5 /Users/yxhuang/.gradle/caches/8.11.1/transforms/18ebba5238f9d1e86fd6439fba164ca7/transformed/material3-release/res
+com.yxhuang.jizhang.feature.ledger-runtime-release-6 /Users/yxhuang/.gradle/caches/8.11.1/transforms/1c013c2565b8b87ffb59ae500eb940f5/transformed/runtime-release/res
+com.yxhuang.jizhang.feature.ledger-lifecycle-viewmodel-2.7.0-7 /Users/yxhuang/.gradle/caches/8.11.1/transforms/1c3ccd4ded6d52b231340b9d630a9060/transformed/lifecycle-viewmodel-2.7.0/res
+com.yxhuang.jizhang.feature.ledger-lifecycle-livedata-core-2.7.0-8 /Users/yxhuang/.gradle/caches/8.11.1/transforms/253569529c6f71a519729fdfc44381e1/transformed/lifecycle-livedata-core-2.7.0/res
+com.yxhuang.jizhang.feature.ledger-foundation-release-9 /Users/yxhuang/.gradle/caches/8.11.1/transforms/26d632b93eddf79b4e982d5f70ddc63c/transformed/foundation-release/res
+com.yxhuang.jizhang.feature.ledger-lifecycle-livedata-2.7.0-10 /Users/yxhuang/.gradle/caches/8.11.1/transforms/299f88744a583b7f85bff18f447705bd/transformed/lifecycle-livedata-2.7.0/res
+com.yxhuang.jizhang.feature.ledger-animation-release-11 /Users/yxhuang/.gradle/caches/8.11.1/transforms/2eace2de53d73ebb463524c558b1cf2e/transformed/animation-release/res
+com.yxhuang.jizhang.feature.ledger-material-icons-core-release-12 /Users/yxhuang/.gradle/caches/8.11.1/transforms/2fb19a4a2eeec3a2cd0b58930870216c/transformed/material-icons-core-release/res
+com.yxhuang.jizhang.feature.ledger-core-ktx-1.12.0-13 /Users/yxhuang/.gradle/caches/8.11.1/transforms/31802460ff2cd6a3715be53cdd045bcd/transformed/core-ktx-1.12.0/res
+com.yxhuang.jizhang.feature.ledger-emoji2-views-helper-1.3.0-14 /Users/yxhuang/.gradle/caches/8.11.1/transforms/3cf785022f0aaaf4e8646796e109e9e6/transformed/emoji2-views-helper-1.3.0/res
+com.yxhuang.jizhang.feature.ledger-lifecycle-viewmodel-savedstate-2.7.0-15 /Users/yxhuang/.gradle/caches/8.11.1/transforms/3e2cfc5f43e8246f33d3611b43ab50f8/transformed/lifecycle-viewmodel-savedstate-2.7.0/res
+com.yxhuang.jizhang.feature.ledger-core-1.12.0-16 /Users/yxhuang/.gradle/caches/8.11.1/transforms/3f7fa5b6a1aefdc55126fd66913a7920/transformed/core-1.12.0/res
+com.yxhuang.jizhang.feature.ledger-activity-ktx-1.7.2-17 /Users/yxhuang/.gradle/caches/8.11.1/transforms/46eb02f208f46e2d9cd3edd6c0998114/transformed/activity-ktx-1.7.2/res
+com.yxhuang.jizhang.feature.ledger-ui-unit-release-18 /Users/yxhuang/.gradle/caches/8.11.1/transforms/47a99149a6d21cae4f7a3c4762f10beb/transformed/ui-unit-release/res
+com.yxhuang.jizhang.feature.ledger-lifecycle-livedata-core-ktx-2.7.0-19 /Users/yxhuang/.gradle/caches/8.11.1/transforms/47ec9f43938eaae1119134cba48f3924/transformed/lifecycle-livedata-core-ktx-2.7.0/res
+com.yxhuang.jizhang.feature.ledger-lifecycle-runtime-2.7.0-20 /Users/yxhuang/.gradle/caches/8.11.1/transforms/4891d196e235ab24df9010672e9dfb32/transformed/lifecycle-runtime-2.7.0/res
+com.yxhuang.jizhang.feature.ledger-savedstate-1.2.1-21 /Users/yxhuang/.gradle/caches/8.11.1/transforms/4a3469a40bdbe0593ecd860b85a5fccb/transformed/savedstate-1.2.1/res
+com.yxhuang.jizhang.feature.ledger-lifecycle-viewmodel-compose-2.7.0-22 /Users/yxhuang/.gradle/caches/8.11.1/transforms/4e560d8599437ac4ada13b36db54a44e/transformed/lifecycle-viewmodel-compose-2.7.0/res
+com.yxhuang.jizhang.feature.ledger-emoji2-1.3.0-23 /Users/yxhuang/.gradle/caches/8.11.1/transforms/4ecacdf52ed55f70a289bfe149077514/transformed/emoji2-1.3.0/res
+com.yxhuang.jizhang.feature.ledger-ui-util-release-24 /Users/yxhuang/.gradle/caches/8.11.1/transforms/55e4cddabd1b45d2204ecd4391e0beff/transformed/ui-util-release/res
+com.yxhuang.jizhang.feature.ledger-activity-compose-1.7.2-25 /Users/yxhuang/.gradle/caches/8.11.1/transforms/5be75eb3b4f824f43143cff187ad90fe/transformed/activity-compose-1.7.2/res
+com.yxhuang.jizhang.feature.ledger-room-ktx-2.6.1-26 /Users/yxhuang/.gradle/caches/8.11.1/transforms/64e8c14f44bf59ebde0d62ef6b548448/transformed/room-ktx-2.6.1/res
+com.yxhuang.jizhang.feature.ledger-savedstate-ktx-1.2.1-27 /Users/yxhuang/.gradle/caches/8.11.1/transforms/67a50e56b31077dc9f8786709c228700/transformed/savedstate-ktx-1.2.1/res
+com.yxhuang.jizhang.feature.ledger-animation-core-release-28 /Users/yxhuang/.gradle/caches/8.11.1/transforms/68c18096a9dfecf718fcc3792cf2fb6b/transformed/animation-core-release/res
+com.yxhuang.jizhang.feature.ledger-startup-runtime-1.1.1-29 /Users/yxhuang/.gradle/caches/8.11.1/transforms/72ac94d3bd87e5153bfda358ebb67b78/transformed/startup-runtime-1.1.1/res
+com.yxhuang.jizhang.feature.ledger-fragment-1.6.2-30 /Users/yxhuang/.gradle/caches/8.11.1/transforms/77990b1db7e1b0623b2910feca7a2555/transformed/fragment-1.6.2/res
+com.yxhuang.jizhang.feature.ledger-ui-release-31 /Users/yxhuang/.gradle/caches/8.11.1/transforms/7a3e5a4900de81001ef44ff6b65ca6da/transformed/ui-release/res
+com.yxhuang.jizhang.feature.ledger-appcompat-resources-1.6.1-32 /Users/yxhuang/.gradle/caches/8.11.1/transforms/7b326bda5a803b10746d82a68751b6a0/transformed/appcompat-resources-1.6.1/res
+com.yxhuang.jizhang.feature.ledger-core-runtime-2.2.0-33 /Users/yxhuang/.gradle/caches/8.11.1/transforms/87fcebc589028c23a787f40a83c2058a/transformed/core-runtime-2.2.0/res
+com.yxhuang.jizhang.feature.ledger-appcompat-1.6.1-34 /Users/yxhuang/.gradle/caches/8.11.1/transforms/8ae653c1c66d2d319e32a312467ae453/transformed/appcompat-1.6.1/res
+com.yxhuang.jizhang.feature.ledger-material-ripple-release-35 /Users/yxhuang/.gradle/caches/8.11.1/transforms/a03c2dff3e6b79238179e8dccb4e6cec/transformed/material-ripple-release/res
+com.yxhuang.jizhang.feature.ledger-sqlite-framework-2.4.0-36 /Users/yxhuang/.gradle/caches/8.11.1/transforms/bcdd59eb83f2fce6ad04fd0b56cc2e2b/transformed/sqlite-framework-2.4.0/res
+com.yxhuang.jizhang.feature.ledger-lifecycle-viewmodel-ktx-2.7.0-37 /Users/yxhuang/.gradle/caches/8.11.1/transforms/bff9c4b5ed0209c45d13b92d6291fa59/transformed/lifecycle-viewmodel-ktx-2.7.0/res
+com.yxhuang.jizhang.feature.ledger-foundation-layout-release-38 /Users/yxhuang/.gradle/caches/8.11.1/transforms/c9d2ee1b7eede87301132f27b430f7c6/transformed/foundation-layout-release/res
+com.yxhuang.jizhang.feature.ledger-fragment-ktx-1.6.2-39 /Users/yxhuang/.gradle/caches/8.11.1/transforms/d19506a4d9facb1d0ffafcee1abde78e/transformed/fragment-ktx-1.6.2/res
+com.yxhuang.jizhang.feature.ledger-customview-poolingcontainer-1.0.0-40 /Users/yxhuang/.gradle/caches/8.11.1/transforms/d4885fd14adda35e839bdb4e738eecf2/transformed/customview-poolingcontainer-1.0.0/res
+com.yxhuang.jizhang.feature.ledger-activity-1.7.2-41 /Users/yxhuang/.gradle/caches/8.11.1/transforms/dbff29d19062bd91aff8df17cb69604f/transformed/activity-1.7.2/res
+com.yxhuang.jizhang.feature.ledger-ui-text-release-42 /Users/yxhuang/.gradle/caches/8.11.1/transforms/df50e53835a29c0d4e5e7340b4dbcad5/transformed/ui-text-release/res
+com.yxhuang.jizhang.feature.ledger-ui-graphics-release-43 /Users/yxhuang/.gradle/caches/8.11.1/transforms/ee7f7bcdc3cb31b371cb3ea6f7cce300/transformed/ui-graphics-release/res
+com.yxhuang.jizhang.feature.ledger-profileinstaller-1.3.0-44 /Users/yxhuang/.gradle/caches/8.11.1/transforms/f01e54c91a3349906a716872cbde4ddb/transformed/profileinstaller-1.3.0/res
+com.yxhuang.jizhang.feature.ledger-annotation-experimental-1.4.0-45 /Users/yxhuang/.gradle/caches/8.11.1/transforms/fb38c9c6449a9371500d4cfd6437a049/transformed/annotation-experimental-1.4.0/res
+com.yxhuang.jizhang.feature.ledger-runtime-saveable-release-46 /Users/yxhuang/.gradle/caches/8.11.1/transforms/fe6a2c844ba9c83945730038776d29ea/transformed/runtime-saveable-release/res
+com.yxhuang.jizhang.feature.ledger-release-47 /Users/yxhuang/Desktop/ai project/jizhang/core/database/build/intermediates/packaged_res/release/packageReleaseResources
+com.yxhuang.jizhang.feature.ledger-pngs-48 /Users/yxhuang/Desktop/ai project/jizhang/feature/ledger/build/generated/res/pngs/release
+com.yxhuang.jizhang.feature.ledger-resValues-49 /Users/yxhuang/Desktop/ai project/jizhang/feature/ledger/build/generated/res/resValues/release
+com.yxhuang.jizhang.feature.ledger-mergeReleaseResources-50 /Users/yxhuang/Desktop/ai project/jizhang/feature/ledger/build/intermediates/incremental/release/mergeReleaseResources/merged.dir
+com.yxhuang.jizhang.feature.ledger-mergeReleaseResources-51 /Users/yxhuang/Desktop/ai project/jizhang/feature/ledger/build/intermediates/incremental/release/mergeReleaseResources/stripped.dir
+com.yxhuang.jizhang.feature.ledger-release-52 /Users/yxhuang/Desktop/ai project/jizhang/feature/ledger/build/intermediates/merged_res/release/mergeReleaseResources
+com.yxhuang.jizhang.feature.ledger-main-53 /Users/yxhuang/Desktop/ai project/jizhang/feature/ledger/src/main/res
+com.yxhuang.jizhang.feature.ledger-release-54 /Users/yxhuang/Desktop/ai project/jizhang/feature/ledger/src/release/res

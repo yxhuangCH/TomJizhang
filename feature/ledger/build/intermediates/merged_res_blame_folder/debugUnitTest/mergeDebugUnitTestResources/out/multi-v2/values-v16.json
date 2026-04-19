@@ -1,0 +1,38 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.yxhuang.jizhang.feature.ledger.test.ledger-mergeDebugUnitTestResources-49:/values-v16/values-v16.xml",
+            "map": [
+                {
+                    "source": "/Users/yxhuang/.gradle/caches/8.11.1/transforms/3f7fa5b6a1aefdc55126fd66913a7920/transformed/core-1.12.0/res/values-v16/values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "65",
+                        "endOffsets": "116"
+                    }
+                },
+                {
+                    "source": "/Users/yxhuang/.gradle/caches/8.11.1/transforms/8ae653c1c66d2d319e32a312467ae453/transformed/appcompat-1.6.1/res/values-v16/values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "5",
+                        "endColumns": "12",
+                        "endOffsets": "223"
+                    },
+                    "to": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "121",
+                        "endLines": "6",
+                        "endColumns": "12",
+                        "endOffsets": "289"
+                    }
+                }
+            ]
+        }
+    ]
+}

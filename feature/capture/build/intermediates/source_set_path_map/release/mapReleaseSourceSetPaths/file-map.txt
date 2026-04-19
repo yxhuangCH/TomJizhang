@@ -1,0 +1,33 @@
+com.yxhuang.jizhang.feature.capture-core-ktx-1.10.1-0 /Users/yxhuang/.gradle/caches/8.11.1/transforms/16946ddcdba86fc90c47da45452035f1/transformed/core-ktx-1.10.1/res
+com.yxhuang.jizhang.feature.capture-lifecycle-viewmodel-savedstate-2.6.2-1 /Users/yxhuang/.gradle/caches/8.11.1/transforms/390019efce2f2988374109df031c0d58/transformed/lifecycle-viewmodel-savedstate-2.6.2/res
+com.yxhuang.jizhang.feature.capture-lifecycle-viewmodel-2.6.2-2 /Users/yxhuang/.gradle/caches/8.11.1/transforms/3b8ffdf7d92a5cb4fcd6b7709a30ca2a/transformed/lifecycle-viewmodel-2.6.2/res
+com.yxhuang.jizhang.feature.capture-lifecycle-livedata-core-ktx-2.6.2-3 /Users/yxhuang/.gradle/caches/8.11.1/transforms/3b9a51f115ac408b00ccb30e950b2450/transformed/lifecycle-livedata-core-ktx-2.6.2/res
+com.yxhuang.jizhang.feature.capture-activity-ktx-1.7.2-4 /Users/yxhuang/.gradle/caches/8.11.1/transforms/46eb02f208f46e2d9cd3edd6c0998114/transformed/activity-ktx-1.7.2/res
+com.yxhuang.jizhang.feature.capture-savedstate-1.2.1-5 /Users/yxhuang/.gradle/caches/8.11.1/transforms/4a3469a40bdbe0593ecd860b85a5fccb/transformed/savedstate-1.2.1/res
+com.yxhuang.jizhang.feature.capture-savedstate-ktx-1.2.1-6 /Users/yxhuang/.gradle/caches/8.11.1/transforms/67a50e56b31077dc9f8786709c228700/transformed/savedstate-ktx-1.2.1/res
+com.yxhuang.jizhang.feature.capture-lifecycle-runtime-2.6.2-7 /Users/yxhuang/.gradle/caches/8.11.1/transforms/6b034b8e2faec44dcce77a1531b3e211/transformed/lifecycle-runtime-2.6.2/res
+com.yxhuang.jizhang.feature.capture-core-1.10.1-8 /Users/yxhuang/.gradle/caches/8.11.1/transforms/6f03b2cbc5ad26121531e417629bd406/transformed/core-1.10.1/res
+com.yxhuang.jizhang.feature.capture-lifecycle-livedata-2.6.2-9 /Users/yxhuang/.gradle/caches/8.11.1/transforms/700f1b3111bbb6fa20b361e44adba890/transformed/lifecycle-livedata-2.6.2/res
+com.yxhuang.jizhang.feature.capture-startup-runtime-1.1.1-10 /Users/yxhuang/.gradle/caches/8.11.1/transforms/72ac94d3bd87e5153bfda358ebb67b78/transformed/startup-runtime-1.1.1/res
+com.yxhuang.jizhang.feature.capture-lifecycle-livedata-core-2.6.2-11 /Users/yxhuang/.gradle/caches/8.11.1/transforms/7544a6d70714db366a75a409aa64b487/transformed/lifecycle-livedata-core-2.6.2/res
+com.yxhuang.jizhang.feature.capture-fragment-1.6.2-12 /Users/yxhuang/.gradle/caches/8.11.1/transforms/77990b1db7e1b0623b2910feca7a2555/transformed/fragment-1.6.2/res
+com.yxhuang.jizhang.feature.capture-appcompat-resources-1.6.1-13 /Users/yxhuang/.gradle/caches/8.11.1/transforms/7b326bda5a803b10746d82a68751b6a0/transformed/appcompat-resources-1.6.1/res
+com.yxhuang.jizhang.feature.capture-lifecycle-process-2.6.2-14 /Users/yxhuang/.gradle/caches/8.11.1/transforms/804ae01b5795cbd562c5af06e82c923a/transformed/lifecycle-process-2.6.2/res
+com.yxhuang.jizhang.feature.capture-core-runtime-2.2.0-15 /Users/yxhuang/.gradle/caches/8.11.1/transforms/87fcebc589028c23a787f40a83c2058a/transformed/core-runtime-2.2.0/res
+com.yxhuang.jizhang.feature.capture-appcompat-1.6.1-16 /Users/yxhuang/.gradle/caches/8.11.1/transforms/8ae653c1c66d2d319e32a312467ae453/transformed/appcompat-1.6.1/res
+com.yxhuang.jizhang.feature.capture-emoji2-views-helper-1.2.0-17 /Users/yxhuang/.gradle/caches/8.11.1/transforms/bdeab9c059b4268809e2dd29338a6a50/transformed/emoji2-views-helper-1.2.0/res
+com.yxhuang.jizhang.feature.capture-annotation-experimental-1.3.0-18 /Users/yxhuang/.gradle/caches/8.11.1/transforms/c314956475fb7a3a37dc07fa86d3ce00/transformed/annotation-experimental-1.3.0/res
+com.yxhuang.jizhang.feature.capture-lifecycle-viewmodel-ktx-2.6.2-19 /Users/yxhuang/.gradle/caches/8.11.1/transforms/c8ef60c2e894a5d4ba02ed5e706699dc/transformed/lifecycle-viewmodel-ktx-2.6.2/res
+com.yxhuang.jizhang.feature.capture-fragment-ktx-1.6.2-20 /Users/yxhuang/.gradle/caches/8.11.1/transforms/d19506a4d9facb1d0ffafcee1abde78e/transformed/fragment-ktx-1.6.2/res
+com.yxhuang.jizhang.feature.capture-emoji2-1.2.0-21 /Users/yxhuang/.gradle/caches/8.11.1/transforms/d8c7b0568a04d6f22981329cd5bec6c2/transformed/emoji2-1.2.0/res
+com.yxhuang.jizhang.feature.capture-activity-1.7.2-22 /Users/yxhuang/.gradle/caches/8.11.1/transforms/dbff29d19062bd91aff8df17cb69604f/transformed/activity-1.7.2/res
+com.yxhuang.jizhang.feature.capture-lifecycle-runtime-ktx-2.6.2-23 /Users/yxhuang/.gradle/caches/8.11.1/transforms/eca7fe41acadf0666ab00e7110ae5128/transformed/lifecycle-runtime-ktx-2.6.2/res
+com.yxhuang.jizhang.feature.capture-profileinstaller-1.3.0-24 /Users/yxhuang/.gradle/caches/8.11.1/transforms/f01e54c91a3349906a716872cbde4ddb/transformed/profileinstaller-1.3.0/res
+com.yxhuang.jizhang.feature.capture-pngs-25 /Users/yxhuang/Desktop/ai project/jizhang/feature/capture/build/generated/res/pngs/release
+com.yxhuang.jizhang.feature.capture-resValues-26 /Users/yxhuang/Desktop/ai project/jizhang/feature/capture/build/generated/res/resValues/release
+com.yxhuang.jizhang.feature.capture-mergeReleaseResources-27 /Users/yxhuang/Desktop/ai project/jizhang/feature/capture/build/intermediates/incremental/release/mergeReleaseResources/merged.dir
+com.yxhuang.jizhang.feature.capture-mergeReleaseResources-28 /Users/yxhuang/Desktop/ai project/jizhang/feature/capture/build/intermediates/incremental/release/mergeReleaseResources/stripped.dir
+com.yxhuang.jizhang.feature.capture-release-29 /Users/yxhuang/Desktop/ai project/jizhang/feature/capture/build/intermediates/merged_res/release/mergeReleaseResources
+com.yxhuang.jizhang.feature.capture-main-30 /Users/yxhuang/Desktop/ai project/jizhang/feature/capture/src/main/res
+com.yxhuang.jizhang.feature.capture-release-31 /Users/yxhuang/Desktop/ai project/jizhang/feature/capture/src/release/res
+com.yxhuang.jizhang.feature.capture-release-32 /Users/yxhuang/Desktop/ai project/jizhang/feature/parser/build/intermediates/packaged_res/release/packageReleaseResources

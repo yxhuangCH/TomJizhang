@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.yxhuang.jizhang.feature.capture.dedup.NotificationDeduplicatorTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-04-19T03:00:42" hostname="yxhuangs-MacBook-Pro.local" time="0.016">
+  <properties/>
+  <testcase name="different package is not duplicate()" classname="com.yxhuang.jizhang.feature.capture.dedup.NotificationDeduplicatorTest" time="0.006"/>
+  <testcase name="different text is not duplicate()" classname="com.yxhuang.jizhang.feature.capture.dedup.NotificationDeduplicatorTest" time="0.0"/>
+  <testcase name="exact duplicate within window is duplicate()" classname="com.yxhuang.jizhang.feature.capture.dedup.NotificationDeduplicatorTest" time="0.001"/>
+  <testcase name="same text after window is not duplicate()" classname="com.yxhuang.jizhang.feature.capture.dedup.NotificationDeduplicatorTest" time="0.007"/>
+  <testcase name="ring buffer evicts old entries()" classname="com.yxhuang.jizhang.feature.capture.dedup.NotificationDeduplicatorTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

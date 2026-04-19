@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.yxhuang.jizhang.feature.parser.TransactionParserTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2026-04-19T02:37:43" hostname="yxhuangs-MacBook-Pro.local" time="0.025">
+  <properties/>
+  <testcase name="parse wechat payment with amount and merchant()" classname="com.yxhuang.jizhang.feature.parser.TransactionParserTest" time="0.019"/>
+  <testcase name="parse alipay payment with yuan suffix()" classname="com.yxhuang.jizhang.feature.parser.TransactionParserTest" time="0.0"/>
+  <testcase name="extractAmountFallback returns null when no decimal()" classname="com.yxhuang.jizhang.feature.parser.TransactionParserTest" time="0.0"/>
+  <testcase name="extractMerchantFallback finds valid word()" classname="com.yxhuang.jizhang.feature.parser.TransactionParserTest" time="0.0"/>
+  <testcase name="parse falls back to generic pattern()" classname="com.yxhuang.jizhang.feature.parser.TransactionParserTest" time="0.0"/>
+  <testcase name="extractAmountFallback finds first decimal number()" classname="com.yxhuang.jizhang.feature.parser.TransactionParserTest" time="0.0"/>
+  <testcase name="parse wechat payment with merchant before amount()" classname="com.yxhuang.jizhang.feature.parser.TransactionParserTest" time="0.0"/>
+  <testcase name="isPaymentText returns false for non payment text()" classname="com.yxhuang.jizhang.feature.parser.TransactionParserTest" time="0.0"/>
+  <testcase name="isPaymentText returns true for payment keywords()" classname="com.yxhuang.jizhang.feature.parser.TransactionParserTest" time="0.0"/>
+  <testcase name="parse alipay payment()" classname="com.yxhuang.jizhang.feature.parser.TransactionParserTest" time="0.0"/>
+  <testcase name="parse unknown package returns null fields()" classname="com.yxhuang.jizhang.feature.parser.TransactionParserTest" time="0.0"/>
+  <testcase name="extractMerchantFallback filters out wechat and alipay()" classname="com.yxhuang.jizhang.feature.parser.TransactionParserTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
