@@ -4,7 +4,35 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## [Unreleased]
+## [Unreleased] - 2026-04-19
+
+### Added
+- **Phase 1 core engine fully implemented** — all planned modules built from scratch with TDD.
+  - `:core:model` — pure Kotlin domain models (`Transaction`, `CategoryRule`, `ParseFailureLog`, `NotificationData`).
+  - `:core:database` — Room database (`JizhangDatabase` v1) with DAOs, Flow queries, and Repository implementations mapping Entity ↔ Domain Model.
+  - `:feature:parser` — `TransactionParser` migrated from PoC; input changed to `NotificationData`; `isPaymentText` now checks `title + text + bigText`.
+  - `:feature:capture` — production `CaptureNotificationService` + `CaptureNotificationHandler` + `NotificationDeduplicator`.
+  - `:feature:ledger` — Compose UI with `LedgerReducer` + `StateFlow` pattern; `TransactionListScreen` and `TransactionDetailScreen` with category FilterChips (`FlowRow`).
+  - `:app` — new `MainActivity` replacing PoC launcher; conditional rendering between list and detail; Koin DI aggregation.
+- `docs/PHASE1_TECH_SPEC.md` — comprehensive technical specification documenting architecture, data flow, testing strategy, issue log (12 items), and Phase 2 extension points.
+
+### Changed
+- `AndroidManifest.xml` — replaced PoC `PocNotificationService` and `PocMainActivity` with production `CaptureNotificationService` and `MainActivity`; removed obsolete `PocAccessibilityService` declaration.
+- `JizhangApplication` — added `GlobalContext.getOrNull() == null` guard to prevent `KoinAppAlreadyStartedException` during Robolectric multi-test runs.
+- `SharingStarted.WhileSubscribed(5000)` → `SharingStarted.Lazily` in `LedgerViewModel` for test stability under `UnconfinedTestDispatcher`.
+
+### Fixed
+- **App crash on startup** (`IllegalArgumentException: Service not registered`) caused by stale PoC `PocNotificationService` in manifest. Replaced with clean `CaptureNotificationService` that delegates to `CaptureNotificationHandler` inside a `CoroutineScope`.
+- Cross-module null smart-cast failure in `PersistCapturedTransactionUseCase` — fixed by extracting local variables before null checks.
+- `NotificationDeduplicator` false-positive when both `text` and `bigText` were `null` — fixed to require non-null equality.
+- `TransactionDetailScreen` `FlowRow` experimental API compilation error — added `@OptIn(ExperimentalLayoutApi::class)`.
+- Missing `parametersOf` import in `MainActivity` causing unresolved reference.
+- Missing `:core:database` dependency in `:feature:capture` build script.
+- Missing `koin-android` dependency in `:feature:parser` build script.
+
+### Tests
+- 33 unit tests across all modules, all passing (`testDebugUnitTest`).
+- New test classes: `CaptureNotificationHandlerTest`, `PersistCapturedTransactionUseCaseTest`, `NotificationDeduplicatorTest`, `LedgerReducerTest`, `LedgerViewModelTest`, `TransactionDetailViewModelTest`, `TransactionParserTest`, `AppModuleTest`.
 
 ## [0.2.0] - 2026-04-14
 

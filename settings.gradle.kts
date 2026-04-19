@@ -24,3 +24,9 @@ dependencyResolutionManagement {
 
 rootProject.name = "TomFinancialAccounting"
 include(":app")
+include(":core:model")
+include(":core:database")
+include(":core:common")
+include(":feature:capture")
+include(":feature:parser")
+include(":feature:ledger")
