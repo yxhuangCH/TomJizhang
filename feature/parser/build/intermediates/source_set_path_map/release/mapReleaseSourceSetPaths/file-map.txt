@@ -1,7 +1,0 @@
-com.yxhuang.jizhang.feature.parser-pngs-0 /Users/yxhuang/Desktop/ai project/jizhang/feature/parser/build/generated/res/pngs/release
-com.yxhuang.jizhang.feature.parser-resValues-1 /Users/yxhuang/Desktop/ai project/jizhang/feature/parser/build/generated/res/resValues/release
-com.yxhuang.jizhang.feature.parser-mergeReleaseResources-2 /Users/yxhuang/Desktop/ai project/jizhang/feature/parser/build/intermediates/incremental/release/mergeReleaseResources/merged.dir
-com.yxhuang.jizhang.feature.parser-mergeReleaseResources-3 /Users/yxhuang/Desktop/ai project/jizhang/feature/parser/build/intermediates/incremental/release/mergeReleaseResources/stripped.dir
-com.yxhuang.jizhang.feature.parser-release-4 /Users/yxhuang/Desktop/ai project/jizhang/feature/parser/build/intermediates/merged_res/release/mergeReleaseResources
-com.yxhuang.jizhang.feature.parser-main-5 /Users/yxhuang/Desktop/ai project/jizhang/feature/parser/src/main/res
-com.yxhuang.jizhang.feature.parser-release-6 /Users/yxhuang/Desktop/ai project/jizhang/feature/parser/src/release/res

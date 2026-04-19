@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.yxhuang.jizhang.feature.capture.notification.CaptureNotificationHandlerTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-04-19T03:00:43" hostname="yxhuangs-MacBook-Pro.local" time="0.186">
-  <properties/>
-  <testcase name="skips duplicate notification()" classname="com.yxhuang.jizhang.feature.capture.notification.CaptureNotificationHandlerTest" time="0.175"/>
-  <testcase name="processes target package notification()" classname="com.yxhuang.jizhang.feature.capture.notification.CaptureNotificationHandlerTest" time="0.005"/>
-  <testcase name="skips non-target package()" classname="com.yxhuang.jizhang.feature.capture.notification.CaptureNotificationHandlerTest" time="0.004"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

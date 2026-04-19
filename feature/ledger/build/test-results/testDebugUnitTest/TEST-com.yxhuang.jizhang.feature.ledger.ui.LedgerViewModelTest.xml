@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.yxhuang.jizhang.feature.ledger.ui.LedgerViewModelTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-04-19T02:33:05" hostname="yxhuangs-MacBook-Pro.local" time="0.135">
-  <properties/>
-  <testcase name="uiState emits empty list when no transactions()" classname="com.yxhuang.jizhang.feature.ledger.ui.LedgerViewModelTest" time="0.13"/>
-  <testcase name="uiState emits loading then items()" classname="com.yxhuang.jizhang.feature.ledger.ui.LedgerViewModelTest" time="0.004"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
