@@ -4,7 +4,61 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## [Unreleased] - 2026-04-19
+## [Unreleased] - 2026-04-21
+
+### Added
+- **Phase 2 MVP productization fully implemented** — automatic classification, AI learning loop, keep-alive, onboarding, and privacy compliance.
+  - `:feature:classification` — three-layer classification engine (`Exact → Contains → Unclassified`); `ClassificationEngine` with confidence-ordered matching.
+  - `:ai` — `LlmClient` interface + `DeepSeekLlmClient` (Ktor + `bodyAsText()` manual parsing); `LlmPrompts` with JSON-only output contract; `LlmResponseParser` with validation.
+  - `seed_rules.json` — 140 common merchant-category seed rules covering 9 categories (餐饮, 饮品, 交通, 购物, 娱乐, 日用, 医疗, 教育, 其他); auto-loaded on first launch via `SeedRuleLoader`.
+  - `LlmLearningUseCase` — async learning loop: unclassified merchant → quota check → LLM call → `ContainsRule` (confidence capped at 0.9) → backfill historical `category == null` transactions.
+  - `DailyQuotaLimiter` — DataStore-based daily quota (default 10 calls/day), auto-resets on calendar day change.
+  - `LearningQueue` — in-memory queue for merchants deferred due to quota exhaustion.
+  - `KeepAliveService` — foreground service with `specialUse` type and `START_STICKY`; persistent notification "自动记账运行中".
+  - `KeepAliveNotificationHelper` — `IMPORTANCE_LOW` notification channel with tap-to-open `MainActivity`.
+  - `ServiceAliveChecker` — detects missing notification listener, battery optimization, and foreground service; drives `ServiceStatusBanner` in Compose.
+  - Onboarding flow — 3-page Compose guide (Welcome → Notification Permission → Battery Optimization); persisted via DataStore; skips on subsequent launches.
+  - Privacy settings — `PrivacySettingsScreen` with policy text, CSV export (UTF-8 BOM for Excel), and clear-all-data with confirmation dialog.
+  - `DataExportUseCase` — exports all transactions to timestamped CSV in `Documents/`.
+  - `ClearDataUseCase` — wipes transactions, rules, and parse failure logs.
+  - `docs/privacy_policy.md` — privacy policy documenting local-only storage, minimal LLM upload (merchant name only), and user rights.
+  - `docs/PHASE2_TECH_SPEC.md` — comprehensive Phase 2 technical specification.
+- `TransactionDetailViewModel.save()` — auto-generates `ExactRule` (confidence = 1.0, `MatchType.EXACT`) when user changes a transaction's category, giving user feedback highest priority.
+- `Migration_1_2` — adds `matchType` column to `category_rules` with default `CONTAINS`.
+- `OnboardingPreferences` — DataStore wrapper for onboarding completion state.
+- `ic_notification.xml` — vector drawable for foreground service notification.
+
+### Changed
+- `PersistCapturedTransactionUseCase` — now injects `ClassificationEngine` and `LlmLearningUseCase`; sets `category` from classification result; triggers async LLM learning for unclassified merchants.
+- `app/build.gradle.kts` — added `implementation(project(":feature:classification"))` and `implementation(project(":ai"))`.
+- `feature/ledger/build.gradle.kts` — added dependencies on `:feature:capture` and `androidx-datastore-preferences`.
+- `feature/classification/build.gradle.kts` — added `androidx-datastore-preferences` and `junit-vintage-engine` for Robolectric tests.
+- `settings.gradle.kts` — included `:feature:classification` and `:ai`.
+- `appModules` in `AppModule.kt` — added `classificationModule` and `aiModule`.
+- `AndroidManifest.xml` — added `FOREGROUND_SERVICE_SPECIAL_USE` permission; declared `KeepAliveService` with `foregroundServiceType="specialUse"`.
+- `MainActivity` — integrated onboarding, keep-alive auto-start, and `ServiceStatusBanner` driven by `ServiceAliveChecker` in `onResume()`.
+- `CategoryRule` model — added `matchType: MatchType` enum (`EXACT`, `CONTAINS`).
+- `CategoryRuleRepository` / `TransactionRepository` — added `count()`, `deleteAll()`, `hasRuleCovering()`, `getUnclassifiedByMerchantKeyword()`, `getAll()`.
+
+### Fixed
+- **Ktor MockEngine JSON parsing failures** in `DeepSeekLlmClientTest` — root cause was `body()` ContentNegotiation mismatch with nested escaped JSON. Fixed by switching to `bodyAsText()` + manual `Json.decodeFromString` in production and test code.
+- **`koin-android` incompatible with JVM-only `:ai` module** — fixed by adding `koin-core` to `libs.versions.toml` and using it in `:ai/build.gradle.kts`.
+- **JUnit 4 Robolectric tests not discovered by JUnit Platform** — fixed by adding `junit-vintage-engine` runtime dependency to `:feature:classification`.
+- **`LlmPrompts.SYSTEM` `const val` compilation error** — `trimIndent()` is not compile-time constant; fixed by removing `const`.
+- **`const` keyword not applicable to `trimIndent()` result** — same fix as above.
+- **`HttpClient` "Fail to prepare request body" in tests** — missing ContentNegotiation plugin for request serialization; fixed by adding `install(ContentNegotiation) { json(...) }` to test `HttpClient` configuration.
+- **`:app` compilation failure** — `Unresolved reference` for `classificationModule` and `aiModule` due to missing module dependencies in `app/build.gradle.kts`.
+- **`feature:ledger` compilation failure** — `ServiceStatusSnackbar` referenced `:feature:capture` classes but module had no dependency; fixed by adding `implementation(project(":feature:capture"))`.
+
+### Tests
+- 48+ unit tests across all modules, all passing (`testDebugUnitTest`).
+- New test classes:
+  - `:feature:classification` — `ClassificationEngineTest`, `SeedRuleLoaderTest`, `DailyQuotaLimiterTest`, `LlmLearningUseCaseTest`
+  - `:ai` — `LlmResponseParserTest`, `DeepSeekLlmClientTest`
+  - `:feature:capture` — updated `PersistCapturedTransactionUseCaseTest` with classification and LLM learning triggers
+  - `:feature:ledger` — updated `TransactionDetailViewModelTest` with user-rule generation tests; `DataExportUseCaseTest`
+
+## [0.3.0] - 2026-04-19
 
 ### Added
 - **Phase 1 core engine fully implemented** — all planned modules built from scratch with TDD.
