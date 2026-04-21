@@ -12,6 +12,9 @@ interface TransactionDao {
     @Query("SELECT * FROM transactions ORDER BY timestamp DESC")
     fun observeAll(): Flow<List<TransactionEntity>>
 
+    @Query("SELECT * FROM transactions ORDER BY timestamp DESC")
+    suspend fun getAll(): List<TransactionEntity>
+
     @Insert
     suspend fun insert(entity: TransactionEntity): Long
 
@@ -20,4 +23,10 @@ interface TransactionDao {
 
     @Query("SELECT * FROM transactions WHERE id = :id")
     suspend fun getById(id: Long): TransactionEntity?
+
+    @Query("SELECT * FROM transactions WHERE category IS NULL AND merchant LIKE '%' || :keyword || '%'")
+    suspend fun getUnclassifiedByMerchantKeyword(keyword: String): List<TransactionEntity>
+
+    @Query("DELETE FROM transactions")
+    suspend fun deleteAll()
 }

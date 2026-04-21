@@ -15,7 +15,7 @@ import com.yxhuang.jizhang.core.database.entity.TransactionEntity
         CategoryRuleEntity::class,
         ParseFailureLogEntity::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class JizhangDatabase : RoomDatabase() {

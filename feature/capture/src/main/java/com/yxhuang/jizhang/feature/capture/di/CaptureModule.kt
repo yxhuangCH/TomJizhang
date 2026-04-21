@@ -7,6 +7,6 @@ import org.koin.dsl.module
 
 val captureModule = module {
     single { NotificationDeduplicator() }
-    single { PersistCapturedTransactionUseCase(get(), get(), get()) }
     single { CaptureNotificationHandler(get(), get()) }
+    single { PersistCapturedTransactionUseCase(get(), get(), get(), get(), get()) }
 }

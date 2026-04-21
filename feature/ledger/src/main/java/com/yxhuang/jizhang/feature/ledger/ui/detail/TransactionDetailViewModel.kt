@@ -2,7 +2,10 @@ package com.yxhuang.jizhang.feature.ledger.ui.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.yxhuang.jizhang.core.database.repository.CategoryRuleRepository
 import com.yxhuang.jizhang.core.database.repository.TransactionRepository
+import com.yxhuang.jizhang.core.model.CategoryRule
+import com.yxhuang.jizhang.core.model.MatchType
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -11,7 +14,8 @@ import kotlinx.coroutines.launch
 
 class TransactionDetailViewModel(
     private val transactionId: Long,
-    private val transactionRepository: TransactionRepository
+    private val transactionRepository: TransactionRepository,
+    private val categoryRuleRepository: CategoryRuleRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(TransactionDetailUiState(isLoading = true))
@@ -45,6 +49,16 @@ class TransactionDetailViewModel(
             _uiState.update { it.copy(isSaving = true) }
             val current = transactionRepository.getById(transactionId)
             if (current != null) {
+                if (current.category != category) {
+                    val userRule = CategoryRule(
+                        keyword = merchant,
+                        category = category,
+                        confidence = 1.0f,
+                        matchType = MatchType.EXACT
+                    )
+                    categoryRuleRepository.insert(userRule)
+                }
+
                 transactionRepository.update(
                     current.copy(merchant = merchant, category = category)
                 )

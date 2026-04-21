@@ -24,6 +24,10 @@ class ParseFailureRepositoryImpl(
         return dao.getById(id)?.toDomain()
     }
 
+    override suspend fun deleteAll() {
+        dao.deleteAll()
+    }
+
     private fun ParseFailureLogEntity.toDomain(): ParseFailureLog {
         return ParseFailureLog(
             id = id,

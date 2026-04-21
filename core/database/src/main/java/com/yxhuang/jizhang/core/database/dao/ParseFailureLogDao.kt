@@ -16,4 +16,7 @@ interface ParseFailureLogDao {
 
     @Query("SELECT * FROM parse_failure_logs WHERE id = :id")
     suspend fun getById(id: Long): ParseFailureLogEntity?
+
+    @Query("DELETE FROM parse_failure_logs")
+    suspend fun deleteAll()
 }
