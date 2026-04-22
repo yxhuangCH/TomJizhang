@@ -2,10 +2,8 @@ package com.yxhuang.jizhang.feature.ledger.ui.onboarding
 
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
-import android.os.PowerManager
 import android.provider.Settings
-import androidx.core.content.ContextCompat.startActivity
+import androidx.core.net.toUri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -46,15 +44,18 @@ class OnboardingViewModel(
     }
 
     fun openNotificationSettings(context: Context) {
-        val intent = Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS)
-        startActivity(context, intent, null)
+        val intent = Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS).apply {
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        }
+        context.startActivity(intent)
     }
 
     fun openBatterySettings(context: Context) {
         val intent = Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS).apply {
-            data = Uri.parse("package:${context.packageName}")
+            data = "package:${context.packageName}".toUri()
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         }
-        startActivity(context, intent, null)
+        context.startActivity(intent)
     }
 }
 
