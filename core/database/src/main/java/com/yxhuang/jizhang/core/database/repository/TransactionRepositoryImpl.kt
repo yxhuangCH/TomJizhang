@@ -16,6 +16,10 @@ class TransactionRepositoryImpl(
         }
     }
 
+    override suspend fun getAll(): List<Transaction> {
+        return dao.getAll().map { it.toDomain() }
+    }
+
     override suspend fun insert(transaction: Transaction): Long {
         return dao.insert(transaction.toEntity())
     }
@@ -26,6 +30,14 @@ class TransactionRepositoryImpl(
 
     override suspend fun getById(id: Long): Transaction? {
         return dao.getById(id)?.toDomain()
+    }
+
+    override suspend fun getUnclassifiedByMerchantKeyword(keyword: String): List<Transaction> {
+        return dao.getUnclassifiedByMerchantKeyword(keyword).map { it.toDomain() }
+    }
+
+    override suspend fun deleteAll() {
+        dao.deleteAll()
     }
 
     private fun TransactionEntity.toDomain(): Transaction {

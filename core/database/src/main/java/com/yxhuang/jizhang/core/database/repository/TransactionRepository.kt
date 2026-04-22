@@ -5,7 +5,10 @@ import kotlinx.coroutines.flow.Flow
 
 interface TransactionRepository {
     fun observeAll(): Flow<List<Transaction>>
+    suspend fun getAll(): List<Transaction>
     suspend fun insert(transaction: Transaction): Long
     suspend fun update(transaction: Transaction)
     suspend fun getById(id: Long): Transaction?
+    suspend fun getUnclassifiedByMerchantKeyword(keyword: String): List<Transaction>
+    suspend fun deleteAll()
 }

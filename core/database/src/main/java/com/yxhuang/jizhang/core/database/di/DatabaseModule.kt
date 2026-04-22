@@ -2,6 +2,7 @@ package com.yxhuang.jizhang.core.database.di
 
 import androidx.room.Room
 import com.yxhuang.jizhang.core.database.JizhangDatabase
+import com.yxhuang.jizhang.core.database.migration.Migration_1_2
 import com.yxhuang.jizhang.core.database.repository.CategoryRuleRepository
 import com.yxhuang.jizhang.core.database.repository.CategoryRuleRepositoryImpl
 import com.yxhuang.jizhang.core.database.repository.ParseFailureRepository
@@ -17,7 +18,9 @@ val databaseModule = module {
             androidContext(),
             JizhangDatabase::class.java,
             "jizhang.db"
-        ).build()
+        )
+            .addMigrations(Migration_1_2)
+            .build()
     }
     single { get<JizhangDatabase>().transactionDao() }
     single { get<JizhangDatabase>().categoryRuleDao() }

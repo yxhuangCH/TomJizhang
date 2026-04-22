@@ -189,24 +189,23 @@ Week 1-2    Week 3-5      Week 6-8       Week 9-10      Week 11+
 
 ### 关键任务
 
-- [ ] **Task 3.1** 接入 GitHub Actions CI：编译、单元测试、Detekt 检查。
+- [ ] **Task 3.1** 接入单元测试、Detekt 检查。
 - [ ] **Task 3.2** 补充 Turbine Flow 测试。
 - [ ] **Task 3.3** 补充 Snapshot 回归测试：将 PoC 阶段收集的 50+ 样本纳入测试集。
 - [ ] **Task 3.4** 数据库迁移测试（验证 Schema 变更不会导致用户数据丢失）。
 - [ ] **Task 3.5** 性能基准测试：千条交易列表冷启动时间 < 300ms。
-- [ ] **Task 3.6** 编写完整 README（中英双语），包含截图、架构图、Build 指南。
+- [ ] **Task 3.6** 编写完整 README（中文），包含截图、架构图、Build 指南。
 - [ ] **Task 3.7** 整理开源许可证，确认使用的库均兼容 MIT/Apache-2.0。
-- [ ] **Task 3.8** 招募 20 人内测群，收集一周真实使用反馈。
 
 ### 交付物
 
-1. GitHub 仓库代码 + README + CI 配置。
+1. README。
 2. 内测反馈报告（`docs/beta_feedback.md`）。
 3. 稳定版 Release APK / AAB。
 
 ### 验收标准
 
-- [ ] CI 全绿（编译 + 测试 + 代码规范）。
+- [ ] 编译 + 测试 + 代码规范。
 - [ ] 内测用户 NPS（净推荐值）≥ 40。
 - [ ] 无 P0/P1 级崩溃（Crashlytics 或本地日志验证）。
 

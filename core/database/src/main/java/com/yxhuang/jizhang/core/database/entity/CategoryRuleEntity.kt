@@ -8,5 +8,6 @@ data class CategoryRuleEntity(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val keyword: String,
     val category: String,
-    val confidence: Float = 1.0f
+    val confidence: Float = 1.0f,
+    val matchType: String = "CONTAINS"
 )
