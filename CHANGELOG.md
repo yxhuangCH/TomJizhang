@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [Unreleased] - 2026-04-22
+
+### Changed
+- **`docs/PHASE3_PLAN.md` comprehensively updated** — integrated 10 optimization improvements based on architectural review.
+  - `TransactionType` (INCOME/EXPENSE) model change added across the full pipeline (core model → Entity → DAO → use cases).
+  - Database schema upgrade strategy simplified: direct Entity modification + `fallbackToDestructiveMigration()` instead of `Migration_2_3` (pre-release phase, no production data).
+  - Week 4 scope reduced: bank SMS parsing and Meituan/JD notification support moved to Phase 4 (Appendix A).
+  - `BudgetAlertChecker` relocated from `:feature:analytics` to `:feature:capture` to eliminate circular dependency.
+  - DAO-level indexed queries added (`searchByKeyword`, `getByCategoryAndDateRange`, `getByMerchantName`, `getTotalByTypeAndDateRange`, `getCategorySummary`).
+  - Vico alpha risk mitigated with MPAndroidChart fallback and abstracted chart component interfaces.
+  - All placeholder test bodies replaced with full assertions and edge case coverage.
+  - Bottom navigation design completed with NavHost routing map (账本/统计/设置).
+  - Data consistency strategy defined (Flow for reactive search, suspend for one-shot reports).
+  - Migration versions coordinated into single schema update.
+
 ## [Unreleased] - 2026-04-21
 
 ### Added
