@@ -130,33 +130,43 @@ data class TransactionEntity(
 )
 ```
 
-**D. 数据库迁移 Migration_1_2 → 更名为 Migration_2_3（协调版本号）：**
+**D. 数据库 Schema 直接修改（无需迁移脚本）：**
 
-Phase 2 已存在 `Migration_1_2`（v1 → v2，添加 `matchType`）。Phase 3 的迁移为 v2 → v3：
+Phase 3 处于开发阶段，尚未发布到生产环境。因此不需要编写 `Migration` 类，直接在 Entity 和 Database 定义中修改 schema，然后使用 `fallbackToDestructiveMigration()` 或手动处理版本号：
 
 ```kotlin
-// core/database/src/main/java/.../core/database/migration/Migration_2_3.kt
-val Migration_2_3 = object : Migration(2, 3) {
-    override fun migrate(db: SupportSQLiteDatabase) {
-        // 1. 为 transactions 表添加 type 列
-        db.execSQL("ALTER TABLE transactions ADD COLUMN type TEXT NOT NULL DEFAULT 'EXPENSE'")
-
-        // 2. 为 type 列创建索引（后续按类型筛选优化）
-        db.execSQL("CREATE INDEX IF NOT EXISTS index_transactions_type ON transactions(type)")
-
-        // 3. 创建 budgets 表（Week 2 需要，提前创建以避免后续迁移）
-        db.execSQL("""
-            CREATE TABLE IF NOT EXISTS budgets (
-                id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-                category TEXT NOT NULL,
-                monthly_limit REAL NOT NULL,
-                alert_threshold REAL NOT NULL DEFAULT 0.8
-            )
-        """.trimIndent())
-        db.execSQL("CREATE UNIQUE INDEX IF NOT EXISTS index_budgets_category ON budgets(category)")
+// core/database/src/main/java/.../core/database/JizhangDatabase.kt
+@Database(
+    entities = [
+        TransactionEntity::class,
+        CategoryRuleEntity::class,
+        ParseFailureLogEntity::class,
+        BudgetEntity::class           // 新增
+    ],
+    version = 3                       // 从 2 → 3
+)
+abstract class JizhangDatabase : RoomDatabase() {
+    // ...
+    companion object {
+        fun build(context: Context): JizhangDatabase {
+            return Room.databaseBuilder(context, JizhangDatabase::class.java, "jizhang.db")
+                .addMigrations(Migration_1_2)   // 保留 Phase 2 的迁移
+                .fallbackToDestructiveMigration() // Phase 3 schema 变更使用 destructive 模式
+                .build()
+        }
     }
 }
 ```
+
+**需要直接修改的 Entity：**
+
+`TransactionEntity` 新增 `type` 列（见上方 C 节），`BudgetEntity` 为全新表（见 Step 3.5）。
+
+**为什么不需要 Migration：**
+- Phase 3 是开发阶段，未发布到生产
+- 测试环境数据库可随时重建
+- 避免维护 2→3 迁移脚本的负担
+- `fallbackToDestructiveMigration()` 在开发阶段可接受（不丢失数据前会清空，但开发数据可重新生成）
 
 **E. 全管道集成 TransactionType：**
 
@@ -169,7 +179,8 @@ val Migration_2_3 = object : Migration(2, 3) {
 
 - [ ] `./gradlew :feature:analytics:build` 成功编译
 - [ ] `:app:assembleDebug` 在新增模块依赖后仍成功
-- [ ] `Migration_2_3` 迁移测试通过（含 `type` 列添加 + `budgets` 表创建）
+- [ ] `JizhangDatabase` 版本升级到 3 后编译通过，`fallbackToDestructiveMigration()` 正常工作
+- [ ] `BudgetEntity` 和 `TransactionEntity.type` 在 `@Database` 注解中正确声明
 - [ ] `TransactionEntity.toDomain()` 正确映射 `type` 字段
 
 ---
@@ -249,14 +260,19 @@ data class CategorySummary(
 )
 ```
 
-**索引添加（`Migration_2_3` 中已包含）：**
+**索引添加（在 `TransactionEntity` 的 Room 注解或数据库回调中定义）：**
 
-```sql
-CREATE INDEX IF NOT EXISTS index_transactions_type ON transactions(type);
--- 如需进一步提升搜索性能，可添加：
--- CREATE INDEX IF NOT EXISTS index_transactions_merchant ON transactions(merchant);
--- 说明：merchant 字段的 LIKE 模糊搜索无法利用 B-tree 索引，
--- 数据量 > 10K 时应考虑 FTS（全文搜索），见技术决策章节。
+```kotlin
+// 方式一：在 Entity 中使用 @Index 注解（Room 自动创建）
+@Entity(
+    tableName = "transactions",
+    indices = [
+        Index(value = ["type"]),
+        Index(value = ["merchant"]),
+        Index(value = ["category", "timestamp"])
+    ]
+)
+data class TransactionEntity(...)
 ```
 
 **Repository 层新增方法：**
@@ -568,7 +584,7 @@ fun CategoryPieChart(
 
 #### 实现内容
 
-**TransactionType 迁移已包含 budgets 表创建**（Step 3.1 的 Migration_2_3 中已完成）。
+**TransactionType 和 Budgets 的数据库 Schema 已在 Step 3.1 中直接定义**（Entity 注解 + Database 版本升级）。
 
 `BudgetEntity` 和 `BudgetDao`：
 
@@ -1354,7 +1370,7 @@ private fun date(year: Int, month: Int, day: Int): Long {
 | 图表库 | **Vico（首选）+ MPAndroidChart（备选）** | Vico Compose 原生；MPAndroidChart 作为 alpha 风险兜底 |
 | Vico 风险应对 | 同时依赖两个库，组件接口抽象化 | 出现 blocking issue 可 1 天内切换，不影响开发进度 |
 | 统计计算 | **DAO 聚合查询优先，内存聚合辅助** | `getCategorySummary` 等 SQL 聚合减少数据传输；复杂分析用 Kotlin 集合操作 |
-| TransactionType | **枚举字段 + Migration_2_3** | 区分收入/支出，支撑未来工资、退款等场景；全管道贯通 |
+| TransactionType | **枚举字段 + Entity 直接修改 + `fallbackToDestructiveMigration()`** | 区分收入/支出，支撑未来工资、退款等场景；全管道贯通 |
 | 预算存储 | **Room 新表 `budgets`** | 结构简单，与现有数据库统一；`upsert` 避免重复 |
 | BudgetAlertChecker 归属 | **`:feature:capture`** | 避免循环依赖，直接使用 `:core:database` |
 | 搜索策略 | **DAO 级 `searchByKeyword` + 内存过滤** | Room 的 LIKE 查询 + Flow 响应式更新；> 10K 时考虑 FTS |
@@ -1362,7 +1378,7 @@ private fun date(year: Int, month: Int, day: Int): Long {
 | 统计报表一致性 | **suspend（一次性快照）** | 报表为时间点查询，用户主动切换月份时才刷新 |
 | 周期性检测 | **基于间隔方差的启发式算法** | 简单可解释，不需要 ML 模型；准确率 > 80% 可接受 |
 | 预算预警 | **交易入库后异步检查** | 不阻塞主流程；通过通知栏提醒用户 |
-| Migration 版本 | **2→3（`type` + `budgets` 合并）** | 避免 3→4 两次迁移，减少数据库版本演进复杂度 |
+| Schema 升级策略 | **直接修改 Entity + `fallbackToDestructiveMigration()`** | 开发阶段无需迁移脚本；发布前再考虑正式迁移 |
 
 ---
 
@@ -1393,7 +1409,7 @@ mpandroidchart = { group = "com.github.PhilJay", name = "MPAndroidChart", versio
 ### 配置
 - `settings.gradle.kts`（新增 `:feature:analytics`）
 - `gradle/libs.versions.toml`（新增 Vico、MPAndroidChart 依赖）
-- `core/database/.../JizhangDatabase.kt`（Migration 2→3，注册 Migration_2_3）
+- `core/database/.../JizhangDatabase.kt`（版本升至 3，添加 `BudgetEntity` 到 entities，保留 `Migration_1_2` + `fallbackToDestructiveMigration()`）
 
 ### `:core:model`（变更）
 - `core/model/.../Transaction.kt`（新增 `type: TransactionType` 字段）
@@ -1407,7 +1423,7 @@ mpandroidchart = { group = "com.github.PhilJay", name = "MPAndroidChart", versio
 - `core/database/.../dao/BudgetDao.kt`（新增）
 - `core/database/.../repository/TransactionRepository.kt` + `Impl.kt`（新增 5 个方法）
 - `core/database/.../repository/BudgetRepository.kt` + `Impl.kt`（新增）
-- `core/database/.../migration/Migration_2_3.kt`（新增：type 列 + budgets 表 + 索引）
+- （无新增 Migration 文件——Phase 3 schema 变更直接修改 Entity，无需迁移脚本）
 
 ### `:feature:analytics`（新增模块）
 - `feature/analytics/.../engine/AnalyticsEngine.kt`
@@ -1472,7 +1488,6 @@ mpandroidchart = { group = "com.github.PhilJay", name = "MPAndroidChart", versio
 - `feature/capture/.../test/.../BudgetAlertCheckerTest.kt`
 - `core/database/.../test/.../TransactionDaoTest.kt`（新增搜索和聚合查询测试）
 - `core/database/.../test/.../BudgetDaoTest.kt`
-- `core/database/.../test/.../Migration_2_3_Test.kt`
 
 ---
 
