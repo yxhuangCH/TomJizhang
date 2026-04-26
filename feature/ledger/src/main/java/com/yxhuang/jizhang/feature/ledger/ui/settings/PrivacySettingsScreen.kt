@@ -25,11 +25,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
+import org.koin.compose.koinInject
 
 @Composable
 fun PrivacySettingsScreen(
-    dataExportUseCase: DataExportUseCase,
-    clearDataUseCase: ClearDataUseCase
+    dataExportUseCase: DataExportUseCase = koinInject(),
+    clearDataUseCase: ClearDataUseCase = koinInject()
 ) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()

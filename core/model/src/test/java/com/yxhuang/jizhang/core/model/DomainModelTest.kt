@@ -97,4 +97,41 @@ class DomainModelTest {
         assertNull(decoded.title)
         assertNull(decoded.text)
     }
+
+    @Test
+    fun `transactionType enum has INCOME and EXPENSE values`() {
+        assertEquals(TransactionType.INCOME, TransactionType.valueOf("INCOME"))
+        assertEquals(TransactionType.EXPENSE, TransactionType.valueOf("EXPENSE"))
+        assertEquals(2, TransactionType.values().size)
+    }
+
+    @Test
+    fun `transaction has type field with default EXPENSE`() {
+        val tx = Transaction(
+            amount = 25.0,
+            merchant = "星巴克",
+            category = null,
+            timestamp = 1000L,
+            sourceApp = "com.tencent.mm",
+            rawText = "微信支付 25.00元 星巴克"
+        )
+        assertEquals(TransactionType.EXPENSE, tx.type)
+    }
+
+    @Test
+    fun `transaction copy preserves type field`() {
+        val tx = Transaction(
+            id = 1,
+            amount = 25.0,
+            merchant = "星巴克",
+            category = "餐饮",
+            type = TransactionType.EXPENSE,
+            timestamp = 1000L,
+            sourceApp = "com.tencent.mm",
+            rawText = "raw"
+        )
+        val updated = tx.copy(type = TransactionType.INCOME)
+        assertEquals(TransactionType.INCOME, updated.type)
+        assertEquals("星巴克", updated.merchant)
+    }
 }

@@ -47,6 +47,7 @@ dependencies {
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.turbine)
     testImplementation(libs.junit.jupiter)
+    testImplementation("org.junit.vintage:junit-vintage-engine:5.10.2")
     testImplementation(libs.mockk)
 }
 

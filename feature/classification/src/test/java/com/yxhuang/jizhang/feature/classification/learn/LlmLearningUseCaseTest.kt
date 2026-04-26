@@ -7,6 +7,7 @@ import com.yxhuang.jizhang.core.database.repository.TransactionRepository
 import com.yxhuang.jizhang.core.model.CategoryRule
 import com.yxhuang.jizhang.core.model.MatchType
 import com.yxhuang.jizhang.core.model.Transaction
+import com.yxhuang.jizhang.core.model.TransactionType
 import com.yxhuang.jizhang.feature.classification.quota.DailyQuotaLimiter
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -37,8 +38,8 @@ class LlmLearningUseCaseTest {
         coEvery { llmClient.classify("星巴克") } returns
             LlmClassificationResult("饮品", "merchant contains 星巴克", 0.95f)
         coEvery { txRepo.getUnclassifiedByMerchantKeyword("星巴克") } returns listOf(
-            Transaction(1, 25.0, "星巴克", null, 1000L, "wechat", "raw"),
-            Transaction(2, 30.0, "星巴克 coffee", null, 2000L, "wechat", "raw")
+            Transaction(1, 25.0, "星巴克", null, TransactionType.EXPENSE, 1000L, "wechat", "raw"),
+            Transaction(2, 30.0, "星巴克 coffee", null, TransactionType.EXPENSE, 2000L, "wechat", "raw")
         )
 
         val success = useCase.learnForMerchant("星巴克")

@@ -4,6 +4,7 @@ import app.cash.turbine.test
 import com.yxhuang.jizhang.core.database.dao.TransactionDao
 import com.yxhuang.jizhang.core.database.entity.TransactionEntity
 import com.yxhuang.jizhang.core.model.Transaction
+import com.yxhuang.jizhang.core.model.TransactionType
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.every
@@ -22,7 +23,7 @@ class TransactionRepositoryImplTest {
     @Test
     fun `observeAll emits domain models mapped from entities`() = runTest {
         every { dao.observeAll() } returns flowOf(
-            listOf(TransactionEntity(1L, 25.0, "星巴克", null, 1L, "wechat", "test", 1L))
+            listOf(TransactionEntity(1L, 25.0, "星巴克", null, "EXPENSE", 1L, "wechat", "test", 1L))
         )
 
         repository.observeAll().test {
@@ -43,6 +44,7 @@ class TransactionRepositoryImplTest {
                 amount = 18.5,
                 merchant = "滴滴",
                 category = null,
+                type = TransactionType.EXPENSE,
                 timestamp = 2L,
                 sourceApp = "alipay",
                 rawText = "test"
@@ -56,7 +58,7 @@ class TransactionRepositoryImplTest {
     @Test
     fun `getById returns mapped domain model`() = runTest {
         coEvery { dao.getById(1L) } returns TransactionEntity(
-            1L, 25.0, "星巴克", "餐饮", 1L, "wechat", "test", 1L
+            1L, 25.0, "星巴克", "餐饮", "EXPENSE", 1L, "wechat", "test", 1L
         )
 
         val result = repository.getById(1L)
@@ -85,6 +87,7 @@ class TransactionRepositoryImplTest {
                 amount = 30.0,
                 merchant = "瑞幸咖啡",
                 category = "饮品",
+                type = TransactionType.EXPENSE,
                 timestamp = 1L,
                 sourceApp = "wechat",
                 rawText = "raw"
