@@ -4,6 +4,49 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [Unreleased] - 2026-04-26
+
+### Added
+- **Phase 3 data insights and financial management fully implemented** — statistics, budget management, transaction search, recurring detection.
+  - `:feature:analytics` module with `AnalyticsEngine` for monthly summaries, category breakdown, daily trend, and top merchant ranking.
+  - `RecurringDetector` — heuristic algorithm based on interval coefficient of variation (< 15%) to detect daily/weekly/monthly recurring transactions.
+  - `AnalyticsScreen` with three tabs: monthly overview (summary card + pie chart + top merchants), trend analysis (line chart), and recurring transaction list.
+  - Charts rendered via Vico compose-m3 library for `CategoryPieChart` (donut), `TrendLineChart` (line), and `TopMerchantList`.
+  - `BudgetEntity` / `BudgetDao` / `BudgetRepository` — Room-backed budget storage with upsert support.
+  - `BudgetUseCase` — calculates per-category budget status (spent, remaining, percentage, over-budget flag, alert threshold).
+  - `BudgetAlertChecker` + `BudgetAlertNotificationHelper` — checks budget after transaction capture and sends notification alerts on threshold exceedance.
+  - `BudgetSettingScreen` + `BudgetViewModel` — UI to add/edit/delete monthly budget limits per category with progress bars.
+  - `TransactionSearchEngine` — reactive search by keyword, category, time range, and amount range via Flow + Room LIKE query.
+  - Search bar integrated into `TransactionListScreen` with clear button.
+- `TransactionType` enum (INCOME / EXPENSE) added to `Transaction` domain model, `TransactionEntity`, and full pipeline (DAO `getTotalByTypeAndDateRange`, repository, use cases).
+- `TransactionDao` Phase 3 query methods: `searchByKeyword`, `getByCategoryAndDateRange`, `getByMerchantName`, `getTotalByTypeAndDateRange`, `getCategorySummary` — all with SQL indices.
+- `BudgetNotifier` — context-abstracted notification interface for testability.
+- Settings tab in bottom navigation with `PrivacySettingsScreen` (privacy policy, CSV export, clear data).
+
+### Changed
+- `MainActivity` bottom navigation expanded to 3 tabs: 账本 / 统计 / 设置.
+- `AnalyticsViewModel` now accepts `RecurringDetector` — loads recurring patterns on demand when switching to the recurring tab.
+- `PersistCapturedTransactionUseCase` — integrates `BudgetAlertChecker`; defaults captured transactions to `TransactionType.EXPENSE`.
+- `CaptureModule` registers `BudgetAlertChecker` with 3 dependencies.
+- `DatabaseModule` registers `BudgetDao` and `BudgetRepository`.
+- `LedgerModule` registers `BudgetUseCase`, `TransactionSearchEngine`, and budget ViewModel.
+- `JizhangDatabase` updated to version 3 with `fallbackToDestructiveMigration()`, includes `BudgetEntity`.
+- `PrivacySettingsScreen` — uses `koinInject()` default parameters for simpler invocation.
+- `.gitignore` — added `**/bin/` for IntelliJ build output.
+
+### Tests
+- All test suites pass: `testDebugUnitTest` (258+ tests), `assembleDebug` successful.
+- New test classes:
+  - `feature/analytics` — `AnalyticsEngineTest`, `RecurringDetectorTest`, `AnalyticsViewModelTest`
+  - `feature/ledger` — `BudgetUseCaseTest`, `BudgetViewModelTest`, `TransactionSearchEngineTest`
+  - `feature/capture` — `BudgetAlertCheckerTest`
+  - `core/database` — `BudgetDaoTest`, `TransactionDaoPhase3Test`, `TransactionRepositoryImplTest`
+- Existing tests remain unchanged and passing.
+  - `AnalyticsViewModel` — `switchTab` correctly changes tab index and triggers loading.
+  - `RecurringDetector` — detects monthly/weekly patterns, ignores irregular transactions, handles empty state.
+  - `PersistCapturedTransactionUseCase` — classified merchant triggers budget alert check; unclassified does not.
+  - `TransactionSearchEngine` — keyword, category, amount range, and combined query conditions all filter correctly.
+
 ## [Unreleased] - 2026-04-22
 
 ### Changed

@@ -1,6 +1,7 @@
 package com.yxhuang.jizhang.feature.ledger.ui
 
 import com.yxhuang.jizhang.core.model.Transaction
+import com.yxhuang.jizhang.core.model.TransactionType
 import kotlinx.collections.immutable.persistentListOf
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
@@ -21,7 +22,7 @@ class LedgerReducerTest {
 
     @Test
     fun `reduce same list returns old state reference`() {
-        val transactions = listOf(Transaction(1L, 25.0, "星巴克", null, 1L, "wechat", "test"))
+        val transactions = listOf(Transaction(1L, 25.0, "星巴克", null, TransactionType.EXPENSE, 1L, "wechat", "test"))
         val old = reducer.reduce(LedgerUiState(), transactions)
         val new = reducer.reduce(old, transactions)
         assertSame(old, new)
@@ -29,8 +30,8 @@ class LedgerReducerTest {
 
     @Test
     fun `reduce different list returns new state`() {
-        val t1 = listOf(Transaction(1L, 25.0, "星巴克", null, 1L, "wechat", "test"))
-        val t2 = listOf(Transaction(1L, 25.0, "星巴克", "餐饮", 1L, "wechat", "test"))
+        val t1 = listOf(Transaction(1L, 25.0, "星巴克", null, TransactionType.EXPENSE, 1L, "wechat", "test"))
+        val t2 = listOf(Transaction(1L, 25.0, "星巴克", "餐饮", TransactionType.EXPENSE, 1L, "wechat", "test"))
         val old = reducer.reduce(LedgerUiState(), t1)
         val new = reducer.reduce(old, t2)
         assertNotSame(old, new)
@@ -40,7 +41,7 @@ class LedgerReducerTest {
     @Test
     fun `reduce maps transaction to item correctly`() {
         val transactions = listOf(
-            Transaction(1L, 25.0, "星巴克", "饮品", 1000L, "wechat", "raw")
+            Transaction(1L, 25.0, "星巴克", "饮品", TransactionType.EXPENSE, 1000L, "wechat", "raw")
         )
         val result = reducer.reduce(LedgerUiState(), transactions)
         assertEquals(1, result.items.size)

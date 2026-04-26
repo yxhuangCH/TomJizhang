@@ -6,7 +6,9 @@ import kotlinx.collections.immutable.persistentListOf
 data class LedgerUiState(
     val items: ImmutableList<TransactionItem> = persistentListOf(),
     val isLoading: Boolean = false,
-    val error: String? = null
+    val error: String? = null,
+    val searchKeyword: String = "",
+    val isSearchActive: Boolean = false
 )
 
 data class TransactionItem(

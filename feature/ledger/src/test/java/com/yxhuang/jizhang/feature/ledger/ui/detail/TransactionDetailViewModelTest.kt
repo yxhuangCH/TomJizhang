@@ -5,6 +5,7 @@ import com.yxhuang.jizhang.core.database.repository.CategoryRuleRepository
 import com.yxhuang.jizhang.core.database.repository.TransactionRepository
 import com.yxhuang.jizhang.core.model.MatchType
 import com.yxhuang.jizhang.core.model.Transaction
+import com.yxhuang.jizhang.core.model.TransactionType
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
@@ -35,7 +36,7 @@ class TransactionDetailViewModelTest {
     @Test
     fun `load populates state with existing transaction`() = runTest {
         coEvery { repo.getById(1L) } returns Transaction(
-            1L, 25.0, "星巴克", "餐饮", 1L, "wechat", "test"
+            1L, 25.0, "星巴克", "餐饮", TransactionType.EXPENSE, 1L, "wechat", "test"
         )
 
         val viewModel = TransactionDetailViewModel(1L, repo, ruleRepo)
@@ -53,7 +54,7 @@ class TransactionDetailViewModelTest {
     @Test
     fun `save updates repository`() = runTest {
         coEvery { repo.getById(1L) } returns Transaction(
-            1L, 25.0, "星巴克", "餐饮", 1L, "wechat", "test"
+            1L, 25.0, "星巴克", "餐饮", TransactionType.EXPENSE, 1L, "wechat", "test"
         )
         coEvery { repo.update(any()) } returns Unit
 
@@ -68,7 +69,7 @@ class TransactionDetailViewModelTest {
     @Test
     fun `save with changed category creates new exact rule`() = runTest {
         coEvery { repo.getById(1L) } returns Transaction(
-            1L, 25.0, "星巴克", "餐饮", 1L, "wechat", "test"
+            1L, 25.0, "星巴克", "餐饮", TransactionType.EXPENSE, 1L, "wechat", "test"
         )
         coEvery { repo.update(any()) } returns Unit
 
@@ -89,7 +90,7 @@ class TransactionDetailViewModelTest {
     @Test
     fun `save with same category does not create rule`() = runTest {
         coEvery { repo.getById(1L) } returns Transaction(
-            1L, 25.0, "星巴克", "饮品", 1L, "wechat", "test"
+            1L, 25.0, "星巴克", "饮品", TransactionType.EXPENSE, 1L, "wechat", "test"
         )
         coEvery { repo.update(any()) } returns Unit
 

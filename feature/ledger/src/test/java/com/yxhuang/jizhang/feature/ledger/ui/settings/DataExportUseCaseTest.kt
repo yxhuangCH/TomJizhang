@@ -2,6 +2,7 @@ package com.yxhuang.jizhang.feature.ledger.ui.settings
 
 import com.yxhuang.jizhang.core.database.repository.TransactionRepository
 import com.yxhuang.jizhang.core.model.Transaction
+import com.yxhuang.jizhang.core.model.TransactionType
 import io.mockk.coEvery
 import io.mockk.every
 import io.mockk.mockk
@@ -24,8 +25,8 @@ class DataExportUseCaseTest {
     fun `exportToCsv creates file with header and data`() = runTest {
         every { context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS) } returns tempDir
         coEvery { txRepo.getAll() } returns listOf(
-            Transaction(1, 25.0, "星巴克", "饮品", 1000L, "wechat", "raw"),
-            Transaction(2, 18.5, "滴滴", "交通", 2000L, "alipay", "raw")
+            Transaction(1, 25.0, "星巴克", "饮品", TransactionType.EXPENSE, 1000L, "wechat", "raw"),
+            Transaction(2, 18.5, "滴滴", "交通", TransactionType.EXPENSE, 2000L, "alipay", "raw")
         )
 
         val file = useCase.exportToCsv()

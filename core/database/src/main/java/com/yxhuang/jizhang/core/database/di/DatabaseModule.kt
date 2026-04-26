@@ -3,6 +3,8 @@ package com.yxhuang.jizhang.core.database.di
 import androidx.room.Room
 import com.yxhuang.jizhang.core.database.JizhangDatabase
 import com.yxhuang.jizhang.core.database.migration.Migration_1_2
+import com.yxhuang.jizhang.core.database.repository.BudgetRepository
+import com.yxhuang.jizhang.core.database.repository.BudgetRepositoryImpl
 import com.yxhuang.jizhang.core.database.repository.CategoryRuleRepository
 import com.yxhuang.jizhang.core.database.repository.CategoryRuleRepositoryImpl
 import com.yxhuang.jizhang.core.database.repository.ParseFailureRepository
@@ -20,12 +22,15 @@ val databaseModule = module {
             "jizhang.db"
         )
             .addMigrations(Migration_1_2)
+            .fallbackToDestructiveMigration()
             .build()
     }
     single { get<JizhangDatabase>().transactionDao() }
     single { get<JizhangDatabase>().categoryRuleDao() }
     single { get<JizhangDatabase>().parseFailureLogDao() }
+    single { get<JizhangDatabase>().budgetDao() }
     single<TransactionRepository> { TransactionRepositoryImpl(get()) }
     single<CategoryRuleRepository> { CategoryRuleRepositoryImpl(get()) }
     single<ParseFailureRepository> { ParseFailureRepositoryImpl(get()) }
+    single<BudgetRepository> { BudgetRepositoryImpl(get()) }
 }

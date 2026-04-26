@@ -61,6 +61,7 @@ dependencies {
     implementation(project(":feature:parser"))
     implementation(project(":feature:ledger"))
     implementation(project(":feature:classification"))
+    implementation(project(":feature:analytics"))
     implementation(project(":ai"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

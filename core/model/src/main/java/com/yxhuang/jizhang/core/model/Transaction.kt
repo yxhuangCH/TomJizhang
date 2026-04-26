@@ -5,6 +5,7 @@ data class Transaction(
     val amount: Double,
     val merchant: String,
     val category: String?,
+    val type: TransactionType = TransactionType.EXPENSE,
     val timestamp: Long,
     val sourceApp: String,
     val rawText: String,

@@ -3,6 +3,7 @@ package com.yxhuang.jizhang.feature.capture.usecase
 import com.yxhuang.jizhang.core.model.NotificationData
 import com.yxhuang.jizhang.core.database.repository.ParseFailureRepository
 import com.yxhuang.jizhang.core.database.repository.TransactionRepository
+import com.yxhuang.jizhang.feature.capture.keepalive.BudgetAlertChecker
 import com.yxhuang.jizhang.feature.classification.ClassificationEngine
 import com.yxhuang.jizhang.feature.classification.ClassificationResult
 import com.yxhuang.jizhang.feature.classification.learn.LlmLearningUseCase
@@ -19,8 +20,12 @@ class PersistCapturedTransactionUseCaseTest {
     private val failureRepo: ParseFailureRepository = mockk(relaxed = true)
     private val classificationEngine = mockk<ClassificationEngine>()
     private val llmLearningUseCase = mockk<LlmLearningUseCase>(relaxed = true)
+    private val budgetAlertChecker = mockk<BudgetAlertChecker>(relaxed = true)
     private val useCase = PersistCapturedTransactionUseCase(
         parser, transactionRepo, failureRepo, classificationEngine, llmLearningUseCase
+    )
+    private val useCaseWithBudgetAlert = PersistCapturedTransactionUseCase(
+        parser, transactionRepo, failureRepo, classificationEngine, llmLearningUseCase, budgetAlertChecker
     )
 
     @Test
@@ -112,5 +117,44 @@ class PersistCapturedTransactionUseCaseTest {
         useCase(notification)
 
         coVerify(exactly = 0) { llmLearningUseCase.learnForMerchant(any()) }
+    }
+
+    @Test
+    fun `classified merchant with category triggers budget alert check`() = runTest {
+        coEvery { classificationEngine.classify("星巴克") } returns
+            ClassificationResult.Classified("饮品", 1.0f)
+
+        val notification = NotificationData(
+            1000L, "com.tencent.mm", null, "微信支付", "25.00元 星巴克", null, null, null
+        )
+        useCaseWithBudgetAlert(notification)
+
+        coVerify { budgetAlertChecker.checkAndNotify("饮品", any()) }
+    }
+
+    @Test
+    fun `unclassified merchant does not trigger budget alert check`() = runTest {
+        coEvery { classificationEngine.classify(any()) } returns
+            ClassificationResult.Unclassified
+
+        val notification = NotificationData(
+            1000L, "com.tencent.mm", null, "微信支付", "25.00元 星巴克", null, null, null
+        )
+        useCaseWithBudgetAlert(notification)
+
+        coVerify(exactly = 0) { budgetAlertChecker.checkAndNotify(any(), any()) }
+    }
+
+    @Test
+    fun `classified merchant without budget alert checker does not throw`() = runTest {
+        coEvery { classificationEngine.classify("星巴克") } returns
+            ClassificationResult.Classified("饮品", 1.0f)
+
+        val notification = NotificationData(
+            1000L, "com.tencent.mm", null, "微信支付", "25.00元 星巴克", null, null, null
+        )
+        useCase(notification)
+
+        coVerify(exactly = 0) { budgetAlertChecker.checkAndNotify(any(), any()) }
     }
 }
