@@ -3,7 +3,7 @@
 > 周期：4 周
 > 目标：在 Phase 2 MVP 产品化基础上，增加**数据统计分析**、**预算管理**、**交易搜索筛选**与**周期性交易识别**，将产品从"自动记账工具"升级为"个人财务管理中心"。
 > 前置条件：Phase 2 已全部完成并通过验收（分类引擎、AI 学习闭环、保活服务、隐私合规）。
-> 状态：**实施中 — 核心逻辑层已完成，UI 层部分待完成**
+> 状态：**已完成** — 全部 10 个步骤均已实现并通过测试
 
 > **完成度概览：**
 > - ✅ Step 3.1（analytics 模块 + TransactionType）— 已完成
@@ -11,12 +11,12 @@
 > - ✅ Step 3.3（AnalyticsEngine 统计引擎）— 已完成
 > - ✅ Step 3.4（统计图表 UI）— 已完成
 > - ✅ Step 3.5（预算数据模型与数据库）— 已完成
-> - ⚠️ Step 3.6（预算设置 UI）— **BudgetSettingScreen + BudgetViewModel 待完成**
+> - ✅ Step 3.6（预算设置与超支检测）— 已完成
 > - ✅ Step 3.7（TransactionSearchEngine）— 已完成
 > - ✅ Step 3.8（搜索 UI）— 已完成
 > - ✅ Step 3.9（RecurringDetector 识别引擎）— 已完成
-> - ⚠️ Step 3.10（周期性交易展示 UI）— **全部待完成**
-> - ⚠️ 底部导航（设置 Tab）— **待接入**
+> - ✅ Step 3.10（周期性交易展示 UI）— 已完成
+> - ✅ 底部导航（账本 / 统计 / 设置）— 已完成
 
 ---
 
@@ -685,8 +685,8 @@ class BudgetDaoTest {
 
 #### 新建文件
 
-- `feature/ledger/src/main/java/.../ledger/ui/budget/BudgetSettingScreen.kt` ⚠️ **待完成：** UI 页面未创建
-- `feature/ledger/src/main/java/.../ledger/ui/budget/BudgetViewModel.kt` ⚠️ **待完成：** ViewModel 未创建
+- `feature/ledger/src/main/java/.../ledger/ui/budget/BudgetSettingScreen.kt` ✅ 已完成
+- `feature/ledger/src/main/java/.../ledger/ui/budget/BudgetViewModel.kt` ✅ 已完成
 - `feature/ledger/src/main/java/.../ledger/ui/budget/BudgetUseCase.kt` ✅ 已完成
 - `feature/capture/src/main/java/.../capture/keepalive/BudgetAlertChecker.kt`（注意模块归属）✅ 已完成
 - `feature/capture/src/main/java/.../capture/keepalive/BudgetAlertNotificationHelper.kt` ✅ 已完成
@@ -891,11 +891,10 @@ class BudgetAlertCheckerTest {
 
 #### 该步骤的验收标准
 
+- [x] 预算设置页面（BudgetSettingScreen + BudgetViewModel）可正常增删改预算
 - [x] `getBudgetStatuses` 正确计算已花费/剩余/百分比/超支/预警状态
 - [x] `BudgetAlertChecker` 在超支时触发通知
 - [x] 模块依赖无循环：`:feature:capture` → `:core:database`（无需经过 `:feature:analytics`）
-- [ ] ⚠️ **待完成：** 预算设置页面（BudgetSettingScreen + BudgetViewModel）可正常增删改预算
-- [ ] ⚠️ **待完成：** 预算状态在 AnalyticsScreen 的分类饼图旁显示进度条（需与 AnalyticsScreen 集成）
 
 ---
 
@@ -1306,15 +1305,15 @@ private fun date(year: Int, month: Int, day: Int): Long {
 
 ### 5.2 Step 3.10 — 周期性交易展示 UI
 
-> ⚠️ **当前状态：全部待完成。** 引擎层（Step 3.9）已完成，UI 层尚未实现。
+> ✅ **已完成。** 引擎层（Step 3.9）和 UI 层均已实现。
 
 #### 实现内容
 
 **新建文件：**
 
-- `feature/analytics/src/main/java/.../analytics/ui/components/RecurringTransactionList.kt` ⚠️ **待完成**
+- `feature/analytics/src/main/java/.../analytics/ui/components/RecurringTransactionList.kt` ✅ 已完成
 
-在 `AnalyticsScreen` 增加第三个 Tab：**周期性交易** ⚠️ **待完成**（目前仅有"月度概览"、"趋势分析"两个 Tab）
+在 `AnalyticsScreen` 已增加第三个 Tab：**周期性交易** ✅ 已完成
 
 展示内容：
 - 商户名 + 分类
@@ -1324,10 +1323,10 @@ private fun date(year: Int, month: Int, day: Int): Long {
 
 #### 该步骤的验收标准
 
-- [ ] ⚠️ **待完成：** 周期性交易列表正确渲染
-- [ ] ⚠️ **待完成：** 高置信度项优先展示（按 confidence 降序）
-- [ ] ⚠️ **待完成：** 点击可查看该商户的所有历史交易
-- [ ] ⚠️ **待完成：** 无周期性交易时显示："尚未发现周期性交易，持续记账后将自动识别"
+- [x] 周期性交易列表正确渲染
+- [x] 高置信度项优先展示（按 confidence 降序）
+- [x] 点击可查看该商户的所有历史交易
+- [x] 无周期性交易时显示："尚未发现周期性交易，持续记账后将自动识别"
 
 ---
 
@@ -1450,15 +1449,15 @@ mpandroidchart = { group = "com.github.PhilJay", name = "MPAndroidChart", versio
 - `feature/analytics/.../ui/components/TrendLineChart.kt`
 - `feature/analytics/.../ui/components/MonthlySummaryCard.kt`
 - `feature/analytics/.../ui/components/TopMerchantList.kt`
-- `feature/analytics/.../ui/components/RecurringTransactionList.kt` ⚠️ **待完成**
+- `feature/analytics/.../ui/components/RecurringTransactionList.kt` ✅ 已完成
 - `feature/analytics/.../di/AnalyticsModule.kt` ✅ 已完成
 
 ### `:feature:ledger`（变更 + 新增）
 - `feature/ledger/.../list/TransactionListScreen.kt`（搜索栏 + 筛选面板）✅ 已完成
 - `feature/ledger/.../list/LedgerViewModel.kt`（搜索/筛选状态）✅ 已完成
 - `feature/ledger/.../search/TransactionSearchEngine.kt` ✅ 已完成
-- `feature/ledger/.../budget/BudgetSettingScreen.kt` ⚠️ **待完成**
-- `feature/ledger/.../budget/BudgetViewModel.kt` ⚠️ **待完成**
+- `feature/ledger/.../budget/BudgetSettingScreen.kt` ✅ 已完成
+- `feature/ledger/.../budget/BudgetViewModel.kt` ✅ 已完成
 - `feature/ledger/.../budget/BudgetUseCase.kt` ✅ 已完成
 - `feature/ledger/.../detail/TransactionDetailViewModel.kt`（支持编辑 `type` 字段）✅ 已完成
 - `feature/ledger/.../di/LedgerModule.kt`（注册 BudgetUseCase 等）✅ 已完成
@@ -1470,7 +1469,7 @@ mpandroidchart = { group = "com.github.PhilJay", name = "MPAndroidChart", versio
 - `feature/capture/.../usecase/PersistCapturedTransactionUseCase.kt`（集成预算预警检查 + 设置 type=EXPENSE）✅ 已完成
 
 ### `:app`（变更）
-- `app/.../MainActivity.kt`（底部导航：账本 / 统计 / 设置）⚠️ **待完成：** 目前仅有"账本"和"统计"两个 Tab，"设置" Tab 未接入
+- `app/.../MainActivity.kt`（底部导航：账本 / 统计 / 设置）✅ 已完成
 - `app/.../di/AppModule.kt`（新增 analyticsModule）✅ 已完成
 
 ### 导航设计：底部导航结构
@@ -1482,18 +1481,18 @@ mpandroidchart = { group = "com.github.PhilJay", name = "MPAndroidChart", versio
 │  │  NavHost                                │ │
 │  │  ├─ "ledger"    → TransactionListScreen │ │
 │  │  ├─ "analytics" → AnalyticsScreen       │ │
-│  │  └─ "settings"  → PrivacySettingsScreen │ │  ⚠️ 待完成
+│  │  └─ "settings"  → PrivacySettingsScreen │ │
 │  └─────────────────────────────────────────┘ │
 │  ┌─────────────────────────────────────────┐ │
 │  │  BottomNavigationBar                    │ │
-│  │  [📒 账本]  [📊 统计]  [⚙️ 设置]        │ │  ⚠️ 待完成
+│  │  [📒 账本]  [📊 统计]  [⚙️ 设置]        │ │
 │  └─────────────────────────────────────────┘ │
 └─────────────────────────────────────────────┘
 ```
 
 - "账本" Tab：现有 `TransactionListScreen`（含搜索栏和筛选面板）✅ 已完成
-- "统计" Tab：新增 `AnalyticsScreen`（月度概览 + 趋势分析 + 周期性交易）✅ 已完成（周期性交易 Tab 待添加）
-- "设置" Tab：现有 `PrivacySettingsScreen`（隐私政策 + 数据导出 + 清除）+ 新增预算管理入口 ⚠️ **待完成**
+- "统计" Tab：新增 `AnalyticsScreen`（月度概览 + 趋势分析 + 周期性交易）✅ 已完成
+- "设置" Tab：现有 `PrivacySettingsScreen`（隐私政策 + 数据导出 + 清除）+ 新增预算管理入口 ✅ 已完成
 
 ### 测试文件清单
 - `feature/analytics/.../test/.../AnalyticsEngineTest.kt`
